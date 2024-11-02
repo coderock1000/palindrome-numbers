@@ -1,18 +1,19 @@
+from math import gcd
+
 def find_lcm(a, b):
-    if a > b:
-        greater = a
-    else:
-        greater = b
+    return abs(a * b) // gcd(a, b)
 
-    while True:
-        if greater % a == 0 and greater % b == 0:
-            lcom = greater
-            break
-        greater += 1
+def find_lcm_multiple(numbers):
+    lcm = numbers[0]
+    for num in numbers[1:]:
+        lcm = find_lcm(lcm, num)
+    return lcm
 
-    return lcom
+count = int(input("Enter the number of values: "))
+numbers = []
 
-num1 = int(input("Enter the first number: "))
-num2 = int(input("Enter the second number: "))
+for i in range(count):
+    number = int(input(f"Enter number {i + 1}: "))
+    numbers.append(number)
 
-print("LCM of", num1, "and", num2, "is:", find_lcm(num1, num2))
+print("LCM of the numbers is:", find_lcm_multiple(numbers))
